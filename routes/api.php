@@ -17,3 +17,4 @@ use Illuminate\Http\Request;
 Route::apiResource('states', 'API\StateController');
 Route::apiResource('municipalities', 'API\MunicipalityController');
 Route::apiResource('users', 'API\UserController');
+Route::apiResource('useradmins', 'API\UserAdminController');
