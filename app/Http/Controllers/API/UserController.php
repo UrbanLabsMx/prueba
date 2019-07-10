@@ -27,8 +27,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request['age'] = Carbon::now();
-        return User::create($request->all());
+        $u = User::where('email', $request['email'])->first();
+
+        $p = User::where('phone_number', $request['phone_number'])->first();
+
+        if($u){
+            return response()->json(['message' => 'Si hay email'], 200);
+        }
+        else if($p)
+        {
+            return response()->json(['message' => 'Ya existe el numero'], 200);
+        }else
+        {
+            $request['age'] = Carbon::now();
+            return User::create($request->all());
+        }
+
+
+
     }
 
     /**

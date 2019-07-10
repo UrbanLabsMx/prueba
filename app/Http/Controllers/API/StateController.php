@@ -26,7 +26,19 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        return State::create($request->all());
+
+        $n = State::where('name',$request['name'])->first();
+
+        if($n)
+        {
+            return response()->json(['message' => 'Ya existe este estado'],200);
+        }
+        else
+        {
+            return State::create($request->all());
+        }
+
+
     }
 
     /**
